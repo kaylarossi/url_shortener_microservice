@@ -70,8 +70,8 @@ app.post('/api/shorturl', function(req, res){
             //get latest short_url
             URLModel.findOne({}).sort(
             {short_url: "desc"}).limit(1).then((latestURL) => {
-            if (latestURL.length > 0){
-              short_url = parseInt(latestURL[0].short_url) + 1;
+            if (latestURL != null){
+              short_url = parseInt(latestURL.short_url) + 1;
           } 
             resObj = {original_url: original_url, short_url: short_url};
             //create an entry in database
